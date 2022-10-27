@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.car.center.mapper.MecanicosMapper;
 import com.car.center.repository.MecanicosRepository;
 import com.car.center.request.MecanicosRequest;
 import com.car.center.response.MecanicosResponse;
@@ -17,15 +16,12 @@ public class MecanicosServiceImpl implements MecanicosService {
 	@Autowired
 	private MecanicosRepository mecanicosRepository;
 
-	@Autowired
-	private MecanicosMapper mecanicosMapper;
-
 	@Override
 	public ProcesoResponse guardar(MecanicosRequest mecanicosRequest) throws Exception {
 
 		try {
 
-			mecanicosRepository.save(mecanicosMapper.mecanicosRequestToMecanicosDTO(mecanicosRequest));
+			mecanicosRepository.save(mecanicosRequest);
 
 			return null;
 		} catch (Exception e) {
@@ -38,10 +34,8 @@ public class MecanicosServiceImpl implements MecanicosService {
 
 		try {
 			ProcesoResponse response = new ProcesoResponse();
-			
-			
-			
-			mecanicosRepository.save(mecanicosMapper.mecanicosRequestToMecanicosDTO(mecanicosRequest));
+
+			mecanicosRepository.save(mecanicosRequest);
 			
 			return response;
 		} catch (Exception e) {
